@@ -16,7 +16,7 @@ void square_dgemm(int n, double* A, double* B, double* C)
    {
       for (int j = 0; j < n; j++)
       {
-         std::cout << A[i][j];
+         std::cout << A[i];
       }
       std::cout << '\n';
    }
