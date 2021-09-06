@@ -1,3 +1,5 @@
+#include <iostream>
+
 const char* dgemm_desc = "Basic implementation, three-loop dgemm.";
 
 /*

@@ -1,3 +1,5 @@
+#include <iostream>
+
 const char* dgemm_desc = "Blocked dgemm.";
 
 /* This routine performs a dgemm operation
