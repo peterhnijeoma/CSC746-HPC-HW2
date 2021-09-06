@@ -72,15 +72,16 @@ void square_dgemm(int n, double* A, double* B, double* C)
    {
       for (int bcol = 0; bcol < n; bcol++)
       {
-         //C[arow] = 0.0;
+         cvalue = 0.0;
          for (int k = 0; k < n; k++)
          {
-            cvalue += A[arow+bcol*n] * B[bcol+arow*n+k];
+            //cvalue += A[arow+bcol*n] * B[bcol+arow*n+k];
+            cvalue += A[arow+k*n] * B[bcol+arow*n+k];
             std::cout << "A value = " << A[arow+bcol*n] << " B value = " << B[bcol+arow*n+k] << '\n';
          }
-         
+         std::cout << "cvalue = " << cvalue << '\n';
       }
-      std::cout << "cvalue = " << cvalue << '\n';      
+      
    }
    
    std::cout << "product C - linear " << '\n';
