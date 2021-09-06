@@ -66,7 +66,7 @@ void square_dgemm(int n, double* A, double* B, double* C)
    }
    
    std::cout << "product C - linear " << '\n';
-   for (int i = 0; i < n; i++)
+   for (int i = 0; i < n*n; i++)
    {
       std::cout << C[i] << " ";
    }

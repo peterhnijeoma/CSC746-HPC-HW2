@@ -57,7 +57,7 @@ int main(int argc, char** argv)
     std::cout << std::fixed << std::setprecision(2);
 
     //std::vector<int> test_sizes{64, 128, 256, 512, 1024};
-    std::vector<int> test_sizes{2, 4, 6, 8, 10};
+    std::vector<int> test_sizes{2, 4} //, 6, 8, 10};
     //std::vector<int> block_sizes{2, 16, 32, 64};
     std::vector<int> block_sizes{2, 4};
 
