@@ -21,7 +21,7 @@ void square_dgemm(int n, double* A, double* B, double* C)
       std::cout << '\n';
    }
    
-     std::cout << "matrix A elements - col major" << '\n';
+   /*std::cout << "matrix A elements - col major" << '\n';
    for (int i = 0; i < n; i++)
    {
       for (int j = 0; j < n; j++)
@@ -30,9 +30,10 @@ void square_dgemm(int n, double* A, double* B, double* C)
       }
       std::cout << '\n';
    }
+   */
 
       // display matrices
-   std::cout << "matrix B elements - row major" << '\n';
+   /* std::cout << "matrix B elements - row major" << '\n';
    for (int i = 0; i < n; i++)
    {
       for (int j = 0; j < n; j++)
@@ -41,7 +42,7 @@ void square_dgemm(int n, double* A, double* B, double* C)
       }
       std::cout << '\n';
    }
-   
+   */
      std::cout << "matrix B elements - col major" << '\n';
    for (int i = 0; i < n; i++)
    {
@@ -51,7 +52,7 @@ void square_dgemm(int n, double* A, double* B, double* C)
       }
       std::cout << '\n';
    }
- /*  
+   
    for (int arow = 0; arow < n; arow++)
    {
       for (int bcol = 0; bcol < n; bcol++)
@@ -59,10 +60,16 @@ void square_dgemm(int n, double* A, double* B, double* C)
          C[arow, bcol] = 0.0;
          for (int i = 0; i < n; i++)
          {
-            C[arow, bcol] += A[arow, i] * B[i, bcol];
+            C[arow] += A[arow] * B[bcol];
          }
-      }
-      
+      }      
    }
-   */
+   
+   std::cout << "product C - linear " << '\n';
+   for (int i = 0; i < n; i++)
+   {
+      std::cout << C[i] << " ";
+   }
+   std::cout << '\n';
+   
 }
