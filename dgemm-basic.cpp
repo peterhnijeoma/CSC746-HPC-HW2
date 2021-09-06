@@ -11,7 +11,7 @@ const char* dgemm_desc = "Basic implementation, three-loop dgemm.";
 void square_dgemm(int n, double* A, double* B, double* C) 
 {
    // display matrices
-   std::cout << "matrix A elements" << '\n';
+   std::cout << "matrix A elements - row major" << '\n';
    for (int i = 0; i < n; i++)
    {
       for (int j = 0; j < n; j++)
@@ -21,6 +21,15 @@ void square_dgemm(int n, double* A, double* B, double* C)
       std::cout << '\n';
    }
    
+     std::cout << "matrix A elements - col major" << '\n';
+   for (int i = 0; i < n; i++)
+   {
+      for (int j = 0; j < n; j++)
+      {
+         std::cout << A[j] << " ";
+      }
+      std::cout << '\n';
+   }
  /*  
    for (int arow = 0; arow < n; arow++)
    {
