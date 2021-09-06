@@ -12,11 +12,11 @@ void square_dgemm(int n, double* A, double* B, double* C)
 {
    // display matrices
    std::cout << "matrix A elements - row major" << '\n';
-   for (int i = 0; i < n; i+=2)
+   for (int i = 0; i <= n; i++)
    {
-      for (int j = 0; j < n; j++)
+      for (int j = i; j < n*n; j+=n)
       {
-         std::cout << A[i] << " ";
+         std::cout << A[j] << " ";
       }
       std::cout << '\n';
    }
@@ -58,7 +58,7 @@ void square_dgemm(int n, double* A, double* B, double* C)
    std::cout << "matrix B elements - col major" << '\n';
    for (int i = 0; i < n; i++)
    {
-      for (int j = 0; j < n; j+=2)
+      for (int j = i; j < n; j++)
       {
          std::cout << B[j] << " ";
       }
