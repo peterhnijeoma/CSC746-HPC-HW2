@@ -10,7 +10,8 @@ const char* dgemm_desc = "Basic implementation, three-loop dgemm.";
  */
 void square_dgemm(int n, double* A, double* B, double* C) 
 {
-   double cvalue = 0.0;
+   double cvalue = 0.0;     // debuging product sum
+   //int val_ind;             // vector index
 
    // display matrices
    std::cout << "matrix A elements - row major" << '\n';
@@ -67,7 +68,7 @@ void square_dgemm(int n, double* A, double* B, double* C)
       std::cout << '\n';
    }
 
-   
+   //val_ind = 0;  // matrix product vector index
    for (int arow = 0; arow < n; arow++)
    {
       for (int bcol = 0; bcol < n; bcol++)
@@ -80,8 +81,10 @@ void square_dgemm(int n, double* A, double* B, double* C)
             std::cout << "A value = " << A[arow+k*n] << " B value = " << B[bcol*n+k] << '\n';
          }
          std::cout << "cvalue = " << cvalue << '\n';
+         std::cout << "C index is " << bcol*n+arow << '\n';
+         C[bcol*n+arow] = cvalue;
+         //val_ind++;
       }
-      
    }
    
    std::cout << "product C - linear " << '\n';
