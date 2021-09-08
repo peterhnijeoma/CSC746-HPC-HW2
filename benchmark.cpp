@@ -36,6 +36,16 @@ void fill(double* p, int n) {
         p[i] = 2 * i;            //debuging fill formular
 }
 
+// version of fill for the product matrix - init with 0.0
+void fillc(double* p, int n) {
+    // static std::random_device rd;
+    // static std::default_random_engine gen(rd());
+    // static std::uniform_real_distribution<> dis(-1.0, 1.0);
+    for (int i = 0; i < n; ++i)
+        //p[i] = 2 * dis(gen) - 1;
+        p[i] = 0.0;
+}
+
 bool check_accuracy(double *A, double *Anot, int nvalues)
 {
   double eps = 1e-5;
@@ -86,23 +96,25 @@ int main(int argc, char** argv)
            // load up matrics with some random numbers
            fill(A, n * n);
            fill(B, n * n);
-           fill(C, n * n);
+           fillc(C, n * n);
 
            // make copies of A, B, C for use in verification of results
            memcpy((void *)Acopy, (const void *)A, sizeof(double)*n*n);
            memcpy((void *)Bcopy, (const void *)B, sizeof(double)*n*n);
            memcpy((void *)Ccopy, (const void *)C, sizeof(double)*n*n);
 
-           // insert timer code here
-
+           // start timer code
+           std::chrono::time_point<std::chrono::high_resolution_clock> start_time = std::chrono::high_resolution_clock::now();
 #ifdef BLOCKED
            square_dgemm_blocked(n, b, A, B, C); 
 #else
            square_dgemm(n, A, B, C); 
 #endif
+           // end timer code
+           std::chrono::time_point<std::chrono::high_resolution_clock> end_time = std::chrono::high_resolution_clock::now();
+           std::chrono::duration<double> elapsed = end_time - start_time;
 
-           // insert timer code here
-
+           std::cout << " Elapsed time (for problem size " << n << ") is : " << elapsed.count() << " seconds" << std::endl;
            reference_dgemm(n, 1.0 , Acopy, Bcopy, Ccopy);
 
            // compare your C with that computed by BLAS
