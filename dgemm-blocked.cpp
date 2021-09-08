@@ -37,7 +37,7 @@ void square_dgemm_blocked(int n, int block_size, double* A, double* B, double* C
   for (int i = 0; i < n*n; i++)
   {
      std::cout << "C linear \n";
-     std::cout << c[i] << '\n';
+     std::cout << C[i] << '\n';
   }
   
 }
