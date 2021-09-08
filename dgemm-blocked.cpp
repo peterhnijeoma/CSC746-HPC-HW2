@@ -15,18 +15,18 @@ void square_dgemm_blocked(int n, int block_size, double* A, double* B, double* C
 
   // display matrices
   std::cout << "A matrix - linear" << '\n';
-  for (int) i = 0; i < n*n; i++)
+  for (int i = 0; i < n*n; i++)
   {
     std::cout << A[i] << " ";
   }
-  std:: << '\n';
+  std::cout << '\n';
 
   std::cout << "B matrix - linear" << '\n';
-  for (int) i = 0; i < n*n; i++)
+  for (int i = 0; i < n*n; i++)
   {
     std::cout << B[i] << " ";
   }
-  std:: << '\n';
+  std::cout << '\n';
    
   for (kk = 0; kk < en; kk += block_size)
   {
