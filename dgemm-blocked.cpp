@@ -19,14 +19,14 @@ void square_dgemm_blocked(int n, int block_size, double* A, double* B, double* C
   {
     std::cout << A[i] << " ";
   }
-  std::cout << '\n';
+  std::cout << "\n\n";
 
   std::cout << "B matrix - linear" << '\n';
   for (int i = 0; i < n*n; i++)
   {
     std::cout << B[i] << " ";
   }
-  std::cout << '\n';
+  std::cout << "\n\n";
    
   for (kk = 0; kk < en; kk += block_size)
   {
@@ -42,14 +42,14 @@ void square_dgemm_blocked(int n, int block_size, double* A, double* B, double* C
               cvalue += A[arow+k] * B[bcol+k]; // A[arow+k*n] * B[bcol*n+k]; A[i][k] *B [k][j];
            }
            //C[bcol+arow] C[bcol*n+arow]
-           std::cout << "C[i][j] = " << cvalue;
+           std::cout << "C[i][j] = " << cvalue << '\n';
            C[bcol+arow] = cvalue;
         }
       }
     }
   }
   
-  std::cout << "C linear \n";
+  std::cout << "\nC linear \n";
   for (int i = 0; i < n*n; i++)
   {
      std::cout << C[i] << " ";
