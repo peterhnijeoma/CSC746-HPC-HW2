@@ -85,7 +85,7 @@ void square_dgemm_blocked(int n, int block_size, double* A, double* B, double* C
              //cvalue = 0.0; //C[i][j];
              for (int k = kk; k < kk + block_size; k++)
              {
-                CC[arow][bcol] = CC[arow][bcol] += A[arow][k] * B[k][bcol];
+                CC[arow][bcol] += A[arow][k] * B[k][bcol];
              }
              //C[bcol+arow] C[bcol*n+arow]
              //std::cout << "C[arow+bcol]- C[" << arow << "][" << bcol << "] = " << cvalue << '\n';
