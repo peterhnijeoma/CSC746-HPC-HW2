@@ -10,9 +10,21 @@ const char* dgemm_desc = "Blocked dgemm.";
 void square_dgemm_blocked(int n, int block_size, double* A, double* B, double* C) 
 {
   int ii, kk, jj;     // block row and col indexes
-  const int array_size = 1024;
+  //const int array_size = 1024;
   //double cvalue;      // accumulator
   //int num_blocks = (n/block_size); /* number of blocks; n is matrix size nXn*/
+
+  // declare and dynamically allocate 2D arrays
+  double **AA, **BB, **CC;
+  AA = new double *[n];
+  BB = new double *[n];
+  CC = new double *[n];
+  for (int i = 0; i < n; i++)
+  {
+     AA[i] = new double[n];
+     BB[i] = new double[n];
+     CC[i] = new double[n];
+  }
 
   // display matrices
   std::cout << "A matrix - linear" << '\n';
@@ -23,18 +35,6 @@ void square_dgemm_blocked(int n, int block_size, double* A, double* B, double* C
   std::cout << "\n\n";
 
   //array_size = n;
-
-  // declare and dynamically allocate 2D arrays
-  double **AA, **BB, **CC;
-  AA = new double[n];
-  BB = new double[n];
-  CC = new double[n];
-  for (into i = 0; i < n; i++)
-  {
-     AA[i] = new double[n];
-     BB[i] = new double[n];
-     CC[i] = new double[n];
-  }
 
   // copy column major vector A into 2D array 
   for (int i = 0; i < n*n; i+=n)
