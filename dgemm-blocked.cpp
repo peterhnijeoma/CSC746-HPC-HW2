@@ -23,9 +23,9 @@ void square_dgemm_blocked(int n, int block_size, double* A, double* B, double* C
   std::cout << "\n\n";
 
   // copy column major vector A into 2D array
-  array_size = n;
+  //array_size = n;
   double *AA;
-  AA = new double[][array_size];
+  AA = new double[array_size][array_size];
   for (int i = 0; i < n*n; i+=n)
   {
      for (int j = 0; i < n; i++)
