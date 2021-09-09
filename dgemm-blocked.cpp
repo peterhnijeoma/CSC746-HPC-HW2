@@ -10,8 +10,8 @@ const char* dgemm_desc = "Blocked dgemm.";
 void square_dgemm_blocked(int n, int block_size, double* A, double* B, double* C) 
 {
   int ii, kk, jj;     // block row and col indexes
-  double cvalue;      // accumulator
-  int num_blocks = (n/block_size); /* number of blocks; n is matrix size nXn*/
+  //double cvalue;      // accumulator
+  //int num_blocks = (n/block_size); /* number of blocks; n is matrix size nXn*/
 
   // display matrices
   std::cout << "A matrix - linear" << '\n';
@@ -22,7 +22,8 @@ void square_dgemm_blocked(int n, int block_size, double* A, double* B, double* C
   std::cout << "\n\n";
 
   // copy column major vector A into 2D array
-  double AA[n][n];
+  double *AA;
+  AA = new double[n][n];
   for (int i = 0; i < n*n; i+=n)
   {
      for (int j = 0; i < n; i++)
@@ -41,7 +42,8 @@ void square_dgemm_blocked(int n, int block_size, double* A, double* B, double* C
   std::cout << "\n\n";
 
   // copy column major vector B into 2D array
-  double BB[n][n];
+  double *BB;
+  BB = new double[n][n];
   for (int i = 0; i < n*n; i+=n)
   {
      for (int j = 0; i < n; i++)
@@ -52,7 +54,8 @@ void square_dgemm_blocked(int n, int block_size, double* A, double* B, double* C
   }
   
   // copy column major vector C into 2D array
-  double CC[n][n];
+  double CC;
+  CC = new double[n][n];
   for (int i = 0; i < n*n; i+=n)
   {
      for (int j = 0; i < n; i++)
@@ -77,7 +80,7 @@ void square_dgemm_blocked(int n, int block_size, double* A, double* B, double* C
              //cvalue = 0.0; //C[i][j];
              for (int k = kk; k < kk + block_size; k++)
              {
-                CC[arow][bcol] = CC[arow][k] += A[arow][k] * B[k][bcol];
+                CC[arow][bcol] = CC[arow][bcol] += A[arow][k] * B[k][bcol];
              }
              //C[bcol+arow] C[bcol*n+arow]
              //std::cout << "C[arow+bcol]- C[" << arow << "][" << bcol << "] = " << cvalue << '\n';
@@ -97,7 +100,7 @@ void square_dgemm_blocked(int n, int block_size, double* A, double* B, double* C
      }
      
   }
-  
+
   std::cout << "\nC linear \n";
   for (int i = 0; i < n*n; i++)
   {
