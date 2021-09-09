@@ -87,7 +87,7 @@ void square_dgemm(int n, double* A, double* B, double* C)
          //std::cout << "cvalue = " << cvalue << '\n';   //debug - show mul in action
          //std::cout << "C index is " << bcol*n+arow << '\n'; //debug - show product index - flat memory
          
-         C[bcol*n+arow] = cvalue; // write to product matrix
+         C[bcol*n+arow] += cvalue; // write to product matrix
       }
    }
  /* //debuging code - to display matrix product as is in memory - flat
