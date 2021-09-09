@@ -22,20 +22,29 @@ void square_dgemm_blocked(int n, int block_size, double* A, double* B, double* C
   }
   std::cout << "\n\n";
 
-  // copy column major vector A into 2D array
   //array_size = n;
-  double *AA;
-  AA = new double[array_size][array_size];
+
+  // declare and dynamically allocate 2D arrays
+  double **AA, **BB, **CC;
+  AA = new double[n];
+  BB = new double[n];
+  CC = new double[n];
+  for (into i = 0; i < n; i++)
+  {
+     AA[i] = new double[n];
+     BB[i] = new double[n];
+     CC[i] = new double[n];
+  }
+
+  // copy column major vector A into 2D array 
   for (int i = 0; i < n*n; i+=n)
   {
      for (int j = 0; i < n; i++)
      {
         AA[j][i] = A[i+j];
      }
-     
   }
   
-
   std::cout << "B matrix - linear" << '\n';
   for (int i = 0; i < n*n; i++)
   {
@@ -44,27 +53,21 @@ void square_dgemm_blocked(int n, int block_size, double* A, double* B, double* C
   std::cout << "\n\n";
 
   // copy column major vector B into 2D array
-  double *BB;
-  BB = new double[array_size][array_size];
   for (int i = 0; i < n*n; i+=n)
   {
      for (int j = 0; i < n; i++)
      {
         BB[j][i] = B[i+j];
      }
-     
   }
   
   // copy column major vector C into 2D array
-  double CC;
-  CC = new double[array_size][array_size];
   for (int i = 0; i < n*n; i+=n)
   {
      for (int j = 0; i < n; i++)
      {
         CC[j][i] = C[i+j];
      }
-     
   }
   
   // block matrix multiplication logic
@@ -100,7 +103,6 @@ void square_dgemm_blocked(int n, int block_size, double* A, double* B, double* C
      {
         C[i*n+j] = CC[j][i];
      }
-     
   }
 
   std::cout << "\nC linear \n";
