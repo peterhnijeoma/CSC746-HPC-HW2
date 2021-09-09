@@ -10,7 +10,7 @@ const char* dgemm_desc = "Blocked dgemm.";
 void square_dgemm_blocked(int n, int block_size, double* A, double* B, double* C) 
 {
   int ii, kk, jj;     // block row and col indexes
-  int array_size = n;
+  int array_size = 1024;
   //double cvalue;      // accumulator
   //int num_blocks = (n/block_size); /* number of blocks; n is matrix size nXn*/
 
@@ -23,8 +23,9 @@ void square_dgemm_blocked(int n, int block_size, double* A, double* B, double* C
   std::cout << "\n\n";
 
   // copy column major vector A into 2D array
+  array_size = n;
   double *AA;
-  AA = new double[array_size][array_size];
+  AA = new double[][array_size];
   for (int i = 0; i < n*n; i+=n)
   {
      for (int j = 0; i < n; i++)
