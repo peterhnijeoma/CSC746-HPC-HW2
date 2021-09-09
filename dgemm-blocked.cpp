@@ -10,7 +10,7 @@ const char* dgemm_desc = "Blocked dgemm.";
 void square_dgemm_blocked(int n, int block_size, double* A, double* B, double* C) 
 {
   int ii, kk, jj;     // block row and col indexes
-  int array_size = 1024;
+  const int array_size = 1024;
   //double cvalue;      // accumulator
   //int num_blocks = (n/block_size); /* number of blocks; n is matrix size nXn*/
 
