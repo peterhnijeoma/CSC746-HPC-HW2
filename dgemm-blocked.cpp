@@ -21,9 +21,9 @@ void square_dgemm_blocked(int n, int block_size, double* A, double* B, double* C
   CC = new double *[n];
   for (int i = 0; i < n; i++)
   {
-     AA[i] = new double[n];
-     BB[i] = new double[n];
-     CC[i] = new double[n];
+     AA[i];
+     BB[i];
+     CC[i];
   }
 
   // display matrices
@@ -39,7 +39,7 @@ void square_dgemm_blocked(int n, int block_size, double* A, double* B, double* C
   // copy column major vector A into 2D array 
   for (int i = 0; i < n*n; i+=n)
   {
-     for (int j = 0; i < n; i++)
+     for (int j = 0; j < n; j++)
      {
         AA[j][i] = A[i+j];
      }
@@ -55,7 +55,7 @@ void square_dgemm_blocked(int n, int block_size, double* A, double* B, double* C
   // copy column major vector B into 2D array
   for (int i = 0; i < n*n; i+=n)
   {
-     for (int j = 0; i < n; i++)
+     for (int j = 0; j < n; j++)
      {
         BB[j][i] = B[i+j];
      }
@@ -64,7 +64,7 @@ void square_dgemm_blocked(int n, int block_size, double* A, double* B, double* C
   // copy column major vector C into 2D array
   for (int i = 0; i < n*n; i+=n)
   {
-     for (int j = 0; i < n; i++)
+     for (int j = 0; j < n; j++)
      {
         CC[j][i] = C[i+j];
      }
@@ -104,6 +104,17 @@ void square_dgemm_blocked(int n, int block_size, double* A, double* B, double* C
         C[i*n+j] = CC[j][i];
      }
   }
+
+  // release allocated memory
+  for (int i = 0; i < n; i++)
+  {
+     delete [] AA[i];
+     delete [] BB[i];
+     delete [] CC[i];
+  }
+  delete [] AA;
+  delete [] BB;
+  delete [] CC;
 
   std::cout << "\nC linear \n";
   for (int i = 0; i < n*n; i++)
