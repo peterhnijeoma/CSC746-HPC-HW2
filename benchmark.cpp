@@ -66,10 +66,10 @@ int main(int argc, char** argv)
 
     std::cout << std::fixed << std::setprecision(2);
 
-    //std::vector<int> test_sizes{64, 128, 256, 512, 1024};
-    std::vector<int> test_sizes{2, 4}; //, 6, 8, 10};        //debuging problem sizes
-    //std::vector<int> block_sizes{2, 16, 32, 64};
-    std::vector<int> block_sizes{2, 4};                      //debuging block sizes
+    std::vector<int> test_sizes{64, 128, 256, 512, 1024};
+    //std::vector<int> test_sizes{2, 4}; //, 6, 8, 10};   //debuging problem sizes
+    std::vector<int> block_sizes{2, 16, 32, 64};
+    //std::vector<int> block_sizes{2, 4};                 //debuging block sizes
 
     int n_problems = test_sizes.size();
 
@@ -115,7 +115,12 @@ int main(int argc, char** argv)
            std::chrono::time_point<std::chrono::high_resolution_clock> end_time = std::chrono::high_resolution_clock::now();
            std::chrono::duration<double> elapsed = end_time - start_time;
 
+#ifdef BLOCKED
+           std::cout << " Elapsed time (for problem size " << n << " and block size " << b << ") is : " << elapsed.count() << " seconds" << std::endl;
+#else
            std::cout << " Elapsed time (for problem size " << n << ") is : " << elapsed.count() << " seconds" << std::endl;
+#endif
+
            reference_dgemm(n, 1.0 , Acopy, Bcopy, Ccopy);
 
            // compare your C with that computed by BLAS

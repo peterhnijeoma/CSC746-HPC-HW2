@@ -108,7 +108,7 @@ void square_dgemm_blocked(int n, int block_size, double* A, double* B, double* C
 //   }
 //   std::cout << '\n';
   
-  std::cout << "start mm \n";
+  //std::cout << "start mm \n";
   // block matrix multiplication logic
   for (ii = 0; ii < n; ii += block_size)  // partition rows by block size; iterate for n/block_size blocks
   {
