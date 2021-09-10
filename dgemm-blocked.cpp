@@ -38,7 +38,7 @@ void square_dgemm_blocked(int n, int block_size, double* A, double* B, double* C
   std::cout << "\n\n";
 
   // copy column major vector A into 2D array 
-  for (int i = 0, K = 0; i < n*n && K < n; i+=n, k++)
+  for (int k = 0, i = 0; i < n*n; k++, i+=n)
   {
      for (int j = 0; j < n; j++)
      {
@@ -101,7 +101,7 @@ void square_dgemm_blocked(int n, int block_size, double* A, double* B, double* C
   {
      for (int j = 0; j < n; j++)
      {
-        std::cout << CC[i][j] " ";
+        std::cout << CC[i][j] << " ";
      }
      std::cout << '\n';
   }
