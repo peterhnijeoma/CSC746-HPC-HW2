@@ -10,10 +10,7 @@ const char* dgemm_desc = "Blocked dgemm.";
 void square_dgemm_blocked(int n, int block_size, double* A, double* B, double* C) 
 {
   int ii, kk, jj;     // block row and col indexes
-  //const int array_size = 1024;
-  //double cvalue;      // accumulator
-  //int num_blocks = (n/block_size); /* number of blocks; n is matrix size nXn*/
-
+ 
   // declare and dynamically allocate 2D arrays
   double **AA, **BB, **CC;
   AA = new double *[n];
@@ -33,21 +30,19 @@ void square_dgemm_blocked(int n, int block_size, double* A, double* B, double* C
   }
   
   // display matrices
-  std::cout << "A matrix - linear" << '\n';
+  std::cout << "matrix A - linear" << '\n';
   for (int i = 0; i < n*n; i++)
   {
     std::cout << A[i] << " ";
   }
   std::cout << "\n\n";
 
-  //array_size = n;
-
   // copy column major vector A into 2D array 
-  for (int i = 0; i < n*n; i+=n)
+  for (int i = 0, K = 0; i < n*n && K < n; i+=n, k++)
   {
      for (int j = 0; j < n; j++)
      {
-        AA[j][i] = A[i+j];
+        AA[j][k] = A[i+j];
      }
   }
   
@@ -57,7 +52,7 @@ void square_dgemm_blocked(int n, int block_size, double* A, double* B, double* C
   {
      for (int j = 0; j < n; j++)
      {
-        std::cout << AA[i][j];
+        std::cout << AA[i][j] << " ";
      }
      std::cout << '\n';
   }
@@ -85,7 +80,7 @@ void square_dgemm_blocked(int n, int block_size, double* A, double* B, double* C
   {
      for (int j = 0; j < n; j++)
      {
-        std::cout << BB[i][j];
+        std::cout << BB[i][j] << " ";
      }
      std::cout << '\n';
   }
@@ -106,7 +101,7 @@ void square_dgemm_blocked(int n, int block_size, double* A, double* B, double* C
   {
      for (int j = 0; j < n; j++)
      {
-        std::cout << CC[i][j];
+        std::cout << CC[i][j] " ";
      }
      std::cout << '\n';
   }
