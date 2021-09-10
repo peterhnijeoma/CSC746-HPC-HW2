@@ -70,6 +70,7 @@ void square_dgemm_blocked(int n, int block_size, double* A, double* B, double* C
      }
   }
   
+  std::cout << "start mm \n";
   // block matrix multiplication logic
   for (ii = 0; ii < n; ii += block_size)  // partition rows by block size; iterate for n/block_size blocks
   {
@@ -85,7 +86,10 @@ void square_dgemm_blocked(int n, int block_size, double* A, double* B, double* C
              //cvalue = 0.0; //C[i][j];
              for (int k = kk; k < kk + block_size; k++)
              {
+                std::cout << "arow is: " << arow << "; bcol is: " << bcol << "; k is: " << k << '\n';
+                std::cout "CC[" << arow << "][" << bcol << "] before is: " << CC[arow][bcol] << '\n';
                 CC[arow][bcol] += AA[arow][k] * BB[k][bcol];
+                std::cout "CC[" << arow << "][" << bcol << "] after is: " << CC[arow][bcol] << '\n';
              }
              //C[bcol+arow] C[bcol*n+arow]
              //std::cout << "C[arow+bcol]- C[" << arow << "][" << bcol << "] = " << cvalue << '\n';
