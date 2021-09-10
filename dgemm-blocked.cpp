@@ -26,6 +26,7 @@ void square_dgemm_blocked(int n, int block_size, double* A, double* B, double* C
      CC[i] = new double [n];
   }
 
+  std::cout << "new run: matrix size is: " << n << "; and block size is: " << block_size << '\n';
   // display matrices
   std::cout << "A matrix - linear" << '\n';
   for (int i = 0; i < n*n; i++)
