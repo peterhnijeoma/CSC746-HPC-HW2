@@ -29,7 +29,7 @@ void square_dgemm_blocked(int n, int block_size, double* A, double* B, double* C
   std::cout << "new run: matrix size is: " << n << "; and block size is: " << block_size << '\n';
   if (block_size > n)
   {
-     return void;
+     return ;
   }
   
   // display matrices
