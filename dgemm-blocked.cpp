@@ -21,9 +21,9 @@ void square_dgemm_blocked(int n, int block_size, double* A, double* B, double* C
   CC = new double *[n];
   for (int i = 0; i < n; i++)
   {
-     AA[i];
-     BB[i];
-     CC[i];
+     AA[i] = new double [n];
+     BB[i] = new double [n];
+     CC[i] = new double [n];
   }
 
   // display matrices
