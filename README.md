@@ -20,5 +20,9 @@ while still in the build directory,
 # to run block version of MM for the same problem sizes
 % ./benchmark-blocked
 
+# to run blas version of MM for the same problem sizes
+% ./benchmark-blas
+
+
 
 

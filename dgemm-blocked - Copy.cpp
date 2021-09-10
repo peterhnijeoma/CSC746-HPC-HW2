@@ -24,17 +24,48 @@ void square_dgemm_blocked(int n, int block_size, double* A, double* B, double* C
      CC[i] = new double [n];
   }
 
-  // copy column major vector A, B, and C into 2D arrays AA, BB, and CC respectively 
+//   std::cout << "new run: matrix size is: " << n << "; and block size is: " << block_size << '\n';
+//   if (block_size > n)
+//   {
+//      return ;
+//   }
+  
+  // display matrices - debugging
+//   std::cout << "matrix A - linear" << '\n';
+//   for (int i = 0; i < n*n; i++)
+//   {
+//     std::cout << A[i] << " ";
+//   }
+//   std::cout << "\n\n";
+
+  // copy column major vector A into 2D array 
   for (int k = 0, i = 0; i < n*n; k++, i+=n)
   {
      for (int j = 0; j < n; j++)
      {
         AA[j][k] = A[i+j];
-        BB[j][k] = B[i+j];
-        CC[j][k] = C[i+j];
      }
   }
-/*  
+  
+  // display AA  - debugging
+//   std::cout << "matrix AA \n";
+//   for (int i = 0; i < n; i++)
+//   {
+//      for (int j = 0; j < n; j++)
+//      {
+//         std::cout << AA[i][j] << " ";
+//      }
+//      std::cout << '\n';
+//   }
+//   std::cout << '\n';
+
+//   std::cout << "B matrix - linear" << '\n';
+//   for (int i = 0; i < n*n; i++)
+//   {
+//     std::cout << B[i] << " ";
+//   }
+//   std::cout << "\n\n";
+
   // copy column major vector B into 2D array
   for (int i = 0, k = 0; i < n*n; k++, i+=n)
   {
@@ -44,6 +75,18 @@ void square_dgemm_blocked(int n, int block_size, double* A, double* B, double* C
      }
   }
   
+  // display BB  - debugging
+//   std::cout << "matrix BB \n";
+//   for (int i = 0; i < n; i++)
+//   {
+//      for (int j = 0; j < n; j++)
+//      {
+//         std::cout << BB[i][j] << " ";
+//      }
+//      std::cout << '\n';
+//   }
+//   std::cout << '\n';
+
   // copy column major vector C into 2D array
   for (int i = 0, k = 0; i < n*n; k++, i+=n)
   {
@@ -52,7 +95,18 @@ void square_dgemm_blocked(int n, int block_size, double* A, double* B, double* C
         CC[j][k] = C[i+j];
      }
   }
-*/
+
+    // display CC - debugging
+//   std::cout << "matrix CC \n";
+//   for (int i = 0; i < n; i++)
+//   {
+//      for (int j = 0; j < n; j++)
+//      {
+//         std::cout << CC[i][j] << " ";
+//      }
+//      std::cout << '\n';
+//   }
+//   std::cout << '\n';
   
   //std::cout << "start mm \n";
   // block matrix multiplication logic
@@ -62,7 +116,7 @@ void square_dgemm_blocked(int n, int block_size, double* A, double* B, double* C
     {
       for (kk = 0; kk < n; kk += block_size)  // for each row and column of blocks
       {
-        // basic matrix multiple applied to matrix blocks
+        // basic matrix multiple applied to multiple blocks
         for (int arow = ii; arow < ii + block_size; arow++)
         {
           for (int bcol = jj; bcol < jj + block_size; bcol++)
@@ -99,4 +153,11 @@ void square_dgemm_blocked(int n, int block_size, double* A, double* B, double* C
   delete [] AA;
   delete [] BB;
   delete [] CC;
+
+//   std::cout << "\nC linear \n";
+//   for (int i = 0; i < n*n; i++)
+//   {
+//      std::cout << C[i] << " ";
+//   }
+//   std::cout << "\n\n";
 }
