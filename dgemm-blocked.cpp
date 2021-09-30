@@ -34,25 +34,6 @@ void square_dgemm_blocked(int n, int block_size, double* A, double* B, double* C
         CC[j][k] = C[i+j];
      }
   }
-/*  
-  // copy column major vector B into 2D array
-  for (int i = 0, k = 0; i < n*n; k++, i+=n)
-  {
-     for (int j = 0; j < n; j++)
-     {
-        BB[j][k] = B[i+j];
-     }
-  }
-  
-  // copy column major vector C into 2D array
-  for (int i = 0, k = 0; i < n*n; k++, i+=n)
-  {
-     for (int j = 0; j < n; j++)
-     {
-        CC[j][k] = C[i+j];
-     }
-  }
-*/
   
   //std::cout << "start mm \n";
   // block matrix multiplication logic
